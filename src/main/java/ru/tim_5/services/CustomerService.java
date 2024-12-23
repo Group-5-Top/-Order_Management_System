@@ -7,7 +7,7 @@ import ru.tim_5.repositories.CuctomerRepository;
 import java.util.List;
 
 public class CustomerService {
-    // new
+    // new1
     private final CuctomerRepository customerRepositories;
 
     public CustomerService(CuctomerRepository customerRepositories) {

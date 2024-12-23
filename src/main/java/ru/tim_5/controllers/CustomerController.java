@@ -6,7 +6,7 @@ import ru.tim_5.services.CustomerService;
 import java.util.Scanner;
 
 public class CustomerController {
-    // new
+    // new1
     Scanner sc = new Scanner(System.in);
     String name;
     CustomerCategory category;
