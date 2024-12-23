@@ -4,4 +4,5 @@ public enum CustomerCategory {
     NEW,
     REGULAR,
     VIP
+
 }
