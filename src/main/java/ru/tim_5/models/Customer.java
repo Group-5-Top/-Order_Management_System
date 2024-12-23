@@ -3,7 +3,6 @@ package ru.tim_5.models;
 import java.util.Objects;
 
 public class Customer {
-
     private Integer id;
     private String name;
     private CustomerCategory category;
