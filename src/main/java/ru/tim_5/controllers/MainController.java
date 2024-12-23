@@ -38,7 +38,7 @@ public class MainController {
             }
         }
     }
-
+// new1
     public void startCustomer() {
         boolean exit = true;
         while (exit) {
