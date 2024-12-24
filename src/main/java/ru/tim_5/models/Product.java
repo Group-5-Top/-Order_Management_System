@@ -1,5 +1,6 @@
 package ru.tim_5.models;
 
+// <<<<<<< product
 import java.util.Objects;
 
 public class Product {
@@ -48,4 +49,7 @@ public class Product {
     public String toString() {
         return id + name + '\'' + price + category;
     }
+=======
+public class Product {
+// >>>>>>> master
 }

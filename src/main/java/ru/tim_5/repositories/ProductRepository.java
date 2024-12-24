@@ -1,5 +1,6 @@
 package ru.tim_5.repositories;
 
+// <<<<<<< product
 import ru.tim_5.Exceptions.ProductNotFoundException;
 import ru.tim_5.models.Product;
 import ru.tim_5.models.ProductCategory;
@@ -47,4 +48,7 @@ public class ProductRepository {
                 .orElseThrow(() -> new ProductNotFoundException("Product not found with ID: " + id));
 
     }
+=======
+public class ProductRepository {
+// >>>>>>> master
 }
