@@ -23,10 +23,10 @@ public class MainController {
             System.out.println("0. Выйт");
 
             System.out.println("Выбери опцию:");
-            int chonsol = sc.nextInt();
+            int console = sc.nextInt();
             sc.nextLine();
             try {
-                switch (chonsol){
+                switch (console){
 //                  case 1 -> startProduct();
                     case 2 -> startCustomer();
 //                  case 3 ->;
@@ -47,10 +47,10 @@ public class MainController {
             System.out.println("0. Назад");
 
             System.out.println("Выбери опцию:");
-            int chonsol = sc.nextInt();
+            int console = sc.nextInt();
             sc.nextLine();
             try {
-                switch (chonsol){
+                switch (console){
                     case 1 -> customerController.addCustomer();
                     case 2 -> customerController.getAllCustomers();
                     case 0 -> exit = false;
