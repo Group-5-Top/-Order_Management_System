@@ -33,7 +33,7 @@ public class ProductRepository {
                 String name = parts[1];
                 double price = Double.parseDouble(parts[2]);
                 ProductCategory category = ProductCategory.valueOf(parts[3]);
-                products.add(new Product(id, name, price, category));
+                products.add(new Product(name, price, category));
             }
         } catch (IOException e) {
             e.printStackTrace(); // трасировка
@@ -41,14 +41,11 @@ public class ProductRepository {
         return products;
     }
 
-    public Product findById(int id)  {
+    public Product findById(int id) {
         return findAll().stream()
                 .filter(product -> product.getId() == id)
                 .findFirst()
                 .orElseThrow(() -> new ProductNotFoundException("Product not found with ID: " + id));
 
     }
-=======
-public class ProductRepository {
-// >>>>>>> master
 }
