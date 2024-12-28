@@ -71,6 +71,12 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(ID, name, category);
     }
+    public Customer(String s){//ДОБАВИЛ СВОЙ МЕТОД ДЛЯ ПРЕОБРОЗОВАНИЯ ФАИЛА
+        String[] str = s.split(",");
+        this.ID = String.valueOf(Long.parseLong(str[0]));
+        this.name = str[1];
+        this.category = CustomerCategory.valueOf(str[2]);
+    }
 
     public static BuilderCustomer builderCustomer() {
         return new BuilderCustomer();

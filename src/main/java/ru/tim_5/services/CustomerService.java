@@ -20,10 +20,10 @@ public class CustomerService {
     }
 
     public List<Customer> getAll(){
-        return customerRepositories.findAllCustomers();
+        return customerRepositories.findAllCustomer();
     }
 
     public Customer getProduct(int id) {
-        return customerRepositories.findById(id);
+        return customerRepositories.findByIdCustomer(id);
     }
 }
