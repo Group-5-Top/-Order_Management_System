@@ -14,17 +14,14 @@ public class ProductService {
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-
     public Product addProduct(String name, Double price, ProductCategory category) {
         Product product = new Product(name, price, category);
         return productRepository.saveProduct(product);
     }
-
     public List<Product> getAll() {
         // Получаем список продуктов
         return productRepository.findAllProducts();
     }
-
     public Product getProductId(int id) throws ProductNotFoundException {
         return productRepository.findByIdProduct(id);
     }

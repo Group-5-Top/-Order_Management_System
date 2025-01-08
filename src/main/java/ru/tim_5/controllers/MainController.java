@@ -60,7 +60,7 @@ public class MainController {
             sc.nextLine();
             try {
                 switch (console){
-                    case 1 -> productController.addP(); //метод добавления товара
+                    case 1 -> productController.addProduct(); //метод добавления товара
                     case 2 -> productController.getAllProducts(); // метод показа всех товаров
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");

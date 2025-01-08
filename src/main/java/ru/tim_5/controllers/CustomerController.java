@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class CustomerController {
     // new1
+    private final CustomerService customerServices;
+
     Scanner sc = new Scanner(System.in);
     String name;
     CustomerCategory category;
-
-    private final CustomerService customerServices;
 
     public CustomerController(CustomerService customerServices) {
         this.customerServices = customerServices;
