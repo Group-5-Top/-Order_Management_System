@@ -22,6 +22,7 @@ public class ProductService {
         // Получаем список продуктов
         return productRepository.findAllProducts();
     }
+
     public Product getProductId(int id) throws ProductNotFoundException {
         return productRepository.findByIdProduct(id);
     }
