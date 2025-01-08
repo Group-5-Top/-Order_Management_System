@@ -2,23 +2,20 @@ package ru.tim_5.repositories;
 
 import ru.tim_5.exeptions.CustomerNotFoundException;
 import ru.tim_5.models.Customer;
-import ru.tim_5.models.IdGenerator;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CuctomerRepository {
-    private Integer countId;
+public class CustomerRepository {
+
     private final Path filePath;
     private String fileName = "customer.txt";
 
-    public CuctomerRepository() {//ИЗМЕНИЛ
+    public CustomerRepository() {
         this.filePath = Path.of(fileName);
-        countId = 0;
         try {
             if (!Files.exists(filePath)){
                 Files.createFile(filePath);
@@ -29,9 +26,8 @@ public class CuctomerRepository {
         }
     }
 
-    public Customer saveCustomers(Customer customer) {//МЕТОД СОХРАНЕНИЯ В ФАЙЛЫ
-//        customer.setId(IdGenerator.generateID());
-//        IdGenerator.generateID();
+    public Customer saveCustomers(Customer customer) {
+        //Метод сохраняет покупателя в файл
         try {
             Files.write(filePath, (customer + "\n").getBytes(), StandardOpenOption.APPEND);
         }catch (IOException e){
@@ -40,19 +36,16 @@ public class CuctomerRepository {
         return customer;
     }
 
-    public List<Customer> findAllCustomer(){//МЕТОД ПОКАЗА ВСЕХ ПРОДУКТОВ НО ОН
-        // НЕ ДОКОНЦА КОРЕКНО РАБОТАЕТ
+    public List<Customer> findAllCustomer(){
+        ////Метод получения листа покупателей из файла
         try {
             return Files.readAllLines(filePath).stream()
-                    .map(l -> new Customer(l))
+                    .map(Customer::new)
                     .toList();
         }catch (IOException e){
             throw new RuntimeException(e);
         }
     }
-//    public List<Customer> findAllCustomers() {
-//        return customers;
-//    }
 
     public Customer findByIdCustomer(int id) throws CustomerNotFoundException {//ПОДРЕДАЧИЛ НАДО ПРОВЕРЯТЬ И ТЕСТИТЬ
         return  findAllCustomer().stream()

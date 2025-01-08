@@ -32,11 +32,8 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Покупатель{" +
-                "ID=" + ID +
-                ", Имя='" + name + '\'' +
-                ", Тип покупателя=" + category +
-                '}';
+        return
+                ID + ", " + name + ", " + category;
     }
 
     public void setName(String name) {
@@ -72,8 +69,8 @@ public class Customer {
         return Objects.hash(ID, name, category);
     }
     public Customer(String s){//ДОБАВИЛ СВОЙ МЕТОД ДЛЯ ПРЕОБРОЗОВАНИЯ ФАИЛА
-        String[] str = s.split(",");
-        this.ID = String.valueOf(Long.parseLong(str[0]));
+        String[] str = s.split(", ");
+        this.ID = str[0];
         this.name = str[1];
         this.category = CustomerCategory.valueOf(str[2]);
     }

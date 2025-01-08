@@ -76,14 +76,15 @@ public class Product {
 
     @Override
     public String toString() {
-        return ID + name + '\'' + price + category;
+        return ID + ", " + name + ", " + price + ", " + category;
     }
 
     public Product(String s){//ДОБАВИЛ СВОЙ МЕТОД ДЛЯ ПРЕОБРОЗОВАНИЯ ФАИЛА
-        String[] str = s.split(",");
-        this.ID = String.valueOf(Long.parseLong(str[0]));
+        String[] str = s.split(", ");
+        this.ID = str[0];
         this.name = str[1];
-        this.category = ProductCategory.valueOf(str[2]);
+        this.price = Double.parseDouble(str[2]);
+        this.category = ProductCategory.valueOf(str[3]);
     }
     public static BuilderProduct builderProduct() {
         return new BuilderProduct();
