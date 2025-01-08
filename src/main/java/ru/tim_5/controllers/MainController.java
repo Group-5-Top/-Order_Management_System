@@ -1,10 +1,8 @@
 package ru.tim_5.controllers;
 
-import ru.tim_5.repositories.CuctomerRepository;
-import ru.tim_5.repositories.OrderRepository;
+import ru.tim_5.repositories.CustomerRepository;
 import ru.tim_5.repositories.ProductRepository;
 import ru.tim_5.services.CustomerService;
-import ru.tim_5.services.OrderService;
 import ru.tim_5.services.ProductService;
 
 import java.util.Scanner;
@@ -22,7 +20,7 @@ public class MainController {
     ProductService productService = new ProductService(productRepository);
     ProductController productController = new ProductController(productService);
 
-    CuctomerRepository customerRepositories = new CuctomerRepository();
+    CustomerRepository customerRepositories = new CustomerRepository();
     CustomerService customerServices = new CustomerService(customerRepositories);
     CustomerController customerController = new CustomerController(customerServices);
 
@@ -32,10 +30,10 @@ public class MainController {
             System.out.println("\n1. Управление товарами");
             System.out.println("2. Управление покупателями");
             System.out.println("3. Управление заказами");
-            System.out.println("0. Выйт");
+            System.out.println("0. Выйти из программы");
 
             System.out.println("Выбери опцию:");
-            int console = sc.nextInt();
+            int console = sc.nextInt(); // Ввод цифры для управления
             sc.nextLine();
             try {
                 switch (console){
@@ -62,8 +60,8 @@ public class MainController {
             sc.nextLine();
             try {
                 switch (console){
-                    case 1 -> productController.addP(); //метод добовления товара
-                    case 2 -> productController.getAllProducts(); // метот показа фсех товаров
+                    case 1 -> productController.addP(); //метод добавления товара
+                    case 2 -> productController.getAllProducts(); // метод показа всех товаров
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");
                 }

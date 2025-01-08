@@ -21,13 +21,19 @@ public class CustomerController {
         System.out.println("Введи имя покупателя: ");
         name = sc.next();
         System.out.println("Введи категорию покупателя(NEW, REGULAR, VIP): ");
-        category = CustomerCategory.valueOf(sc.next());
+        try {
+            category = CustomerCategory.valueOf(sc.next());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка: Введенная категория некорректна. " +
+                    "Пожалуйста, выберите одну из: NEW, REGULAR, VIP.");
+        }
+
         String view = customerServices.addCustomer(name, category).toString();
         System.out.println(view);
     }
 
     public void getAllCustomers(){
-        String view = customerServices.getAll().toString();
-        System.out.println(view);
+        // Выводим клиентов на экран
+        customerServices.getAll().forEach((el)-> System.out.println("Покупатель: {" + el + "}"));
     }
 }
