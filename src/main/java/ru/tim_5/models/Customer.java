@@ -20,6 +20,8 @@ public class Customer {
         this.category = category;
     }
 
+
+
     public Customer(Customer other) {
         ID = other.ID; // Уникальное ID копируется с имеющегося экземпляра
         this.name = other.name;

@@ -47,6 +47,8 @@ public class OrderRepository {
         }
     }
 
+
+
     public Order findByIdOrder(String id) throws CustomerNotFoundException {//ПОДРЕДАЧИЛ НАДО ПРОВЕРЯТЬ И ТЕСТИТЬ
         return  findAllOrder().stream()
                 .filter(customer -> customer.getID().equals(id))

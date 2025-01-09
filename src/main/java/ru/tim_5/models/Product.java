@@ -10,6 +10,8 @@ public class Product {
     private double price;
     private ProductCategory category;
 
+
+
     public Product() {
         this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Product
     }

@@ -18,6 +18,8 @@ public class CustomerService {
     public Customer addCustomer(String name, CustomerCategory category) {
         Customer customer = new Customer(name, category);
         return customerRepositories.saveCustomers(customer);
+
+
     }
 
     public List<Customer> getAll(){

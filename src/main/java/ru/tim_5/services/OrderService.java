@@ -24,11 +24,10 @@ public class OrderService {
         return orderRepositories.saveOrder(order);
     }
 
-
-
     public List<Order> getAll(){
         // Получаем список клиентов
         return orderRepositories.findAllOrder();
+
     }
 
     public Order getOrderId(String id) throws CustomerNotFoundException {

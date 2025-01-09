@@ -38,6 +38,8 @@ public class CustomerController {
         customerServices.getAll().forEach((el)-> System.out.println("Покупатель: {" + el + "}"));
     }
 
+
+
     public Customer getCustomer(){
         //Выводим клиента по ID
         System.out.println("Введите ID покупателя: ");

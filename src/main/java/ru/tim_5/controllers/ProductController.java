@@ -46,4 +46,6 @@ public class ProductController {
         System.out.println(productService.getProductId(sc.nextLine()));
         return productService.getProductId(sc.nextLine());
     }
+
+
 }

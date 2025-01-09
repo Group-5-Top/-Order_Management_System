@@ -90,6 +90,8 @@ public class Order {
         return Objects.equals(ID, order.ID) && Objects.equals(customer, order.customer) && Objects.equals(product, order.product) && category == order.category;
     }
 
+
+
     @Override
     public int hashCode() {
         return Objects.hash(ID, customer, product, category);

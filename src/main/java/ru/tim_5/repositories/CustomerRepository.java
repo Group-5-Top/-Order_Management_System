@@ -36,6 +36,10 @@ public class CustomerRepository {
         return customer;
     }
 
+
+
+
+
     public List<Customer> findAllCustomer(){
         ////Метод получения листа покупателей из файла
         try {
