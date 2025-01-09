@@ -1,5 +1,7 @@
 package ru.tim_5.models;
 
+import ru.tim_5.enums.CustomerCategory;
+
 import java.util.Objects;
 
 public class Customer {
@@ -68,6 +70,8 @@ public class Customer {
     public int hashCode() {
         return Objects.hash(ID, name, category);
     }
+
+
     public Customer(String s){//ДОБАВИЛ СВОЙ МЕТОД ДЛЯ ПРЕОБРОЗОВАНИЯ ФАИЛА
         String[] str = s.split(", ");
         this.ID = str[0];

@@ -1,5 +1,7 @@
 package ru.tim_5.models;
 
+import ru.tim_5.enums.ProductCategory;
+
 import java.util.Objects;
 
 public class Product {

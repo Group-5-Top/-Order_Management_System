@@ -1,8 +1,10 @@
 package ru.tim_5.controllers;
 
 import ru.tim_5.repositories.CustomerRepository;
+import ru.tim_5.repositories.OrderRepository;
 import ru.tim_5.repositories.ProductRepository;
 import ru.tim_5.services.CustomerService;
+import ru.tim_5.services.OrderService;
 import ru.tim_5.services.ProductService;
 
 import java.util.Scanner;
@@ -11,9 +13,9 @@ public class MainController {
 
     Scanner sc = new Scanner(System.in);
 
-//    OrderRepository orderRepo = new OrderRepository();//ДОБАВИЛ
-//    OrderService orderService = new OrderService(orderRepo);//ДОБАВИЛ
-//    OrderController orderController = new OrderController(orderService);//ДОБАВИЛ
+    OrderRepository orderRepo = new OrderRepository();//ДОБАВИЛ
+    OrderService orderService = new OrderService(orderRepo);//ДОБАВИЛ
+    OrderController orderController = new OrderController(orderService);//ДОБАВИЛ
 
 //ДОБАВИЛ
     ProductRepository productRepository= new ProductRepository();
@@ -53,6 +55,7 @@ public class MainController {
         while(exit){
             System.out.println("1. Добавить товар");
             System.out.println("2. Показать все товары");
+            System.out.println("3. Найти товар по ID");
             System.out.println("0. Назад");
             System.out.println("Выбери опцию:");
 
@@ -62,6 +65,7 @@ public class MainController {
                 switch (console){
                     case 1 -> productController.addProduct(); //метод добавления товара
                     case 2 -> productController.getAllProducts(); // метод показа всех товаров
+                    case 3 -> productController.getProductById();// метод поиска по ID
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");
                 }
@@ -75,6 +79,7 @@ public class MainController {
         while (exit) {
             System.out.println("1. Добавить покупателя");
             System.out.println("2. Показать всех покупателей");
+            System.out.println("3. Показать покупателя по ID");
             System.out.println("0. Назад");
 
             System.out.println("Выбери опцию:");
@@ -84,6 +89,7 @@ public class MainController {
                 switch (console){
                     case 1 -> customerController.addCustomer();
                     case 2 -> customerController.getAllCustomers();
+                    case 3 -> customerController.getCustomer();
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");
                 }
@@ -104,14 +110,14 @@ public class MainController {
             sc.nextLine();
             try {
                 switch (console){
-//                    case 1 -> //В БУДУЮЩЕМ СОЗДАНИЕ ЗАКАЗОВ
-//                    case 2 -> //В БУДУЮЩЕМ ПОКАЗ ВСЕХ ЗАКАЗОВ
+                    case 1 -> orderController.addOrder();
+                    case 2 -> orderController.getAllOrders();
 //                    case 3 -> //В БУДУЮЩЕМ ИЗМЕНИТЬ СТАТУС ЗАКАЗА
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");
                 }
             }catch (Exception e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
     }

@@ -1,18 +1,24 @@
 package ru.tim_5.models;
 
+import ru.tim_5.enums.CustomerCategory;
+import ru.tim_5.enums.OrderCategory;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Order {
     private final String ID;
     private Customer customer;
-    private Product product;
+    private List<Product> product;
     private OrderCategory category;
+
 
     public Order() {
         this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Order
     }
 
-    public Order(Customer customer, Product product, OrderCategory category) {
+    public Order(Customer customer, List<Product> product, OrderCategory category) {
         this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Product
         this.customer = customer;
         this.product = product;
@@ -33,11 +39,13 @@ public class Order {
         this.category = other.category;
     }
 
+
+
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(List<Product> product) {
         this.product = product;
     }
 
@@ -53,7 +61,7 @@ public class Order {
         return customer;
     }
 
-    public Product getProduct() {
+    public List<Product> getProduct() {
         return product;
     }
 
@@ -63,12 +71,15 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "ID='" + ID + '\'' +
-                ", Покупатель=" + customer +
-                ", Товар=" + product +
-                ", Статус заказа=" + category +
-                '}';
+        return "["+ID  +"]; ["+ customer+ "]; "+ product +"; " + category;
+    }
+
+    public Order(String s){//ДОБАВИЛ СВОЙ МЕТОД ДЛЯ ПРЕОБРОЗОВАНИЯ ФАИЛА
+        String[] str = s.split("]; ");
+        this.ID = str[0];
+        this.customer = new Customer(str[1]);
+        this.product = new ArrayList<>(List.of(new Product(str[2])));
+        this.category = OrderCategory.valueOf(str[3]);
     }
 
     @Override
@@ -90,7 +101,7 @@ public class Order {
 
     public static class BuilderOrder {
         private Customer customer;
-        private Product product;
+        private List<Product> product;
         private OrderCategory category;
 
         public BuilderOrder customer(Customer customer) {
@@ -98,7 +109,7 @@ public class Order {
             return this;
         }
 
-        public BuilderOrder product(Product product) {
+        public BuilderOrder product(List<Product> product) {
             this.product = product;
             return this;
         }

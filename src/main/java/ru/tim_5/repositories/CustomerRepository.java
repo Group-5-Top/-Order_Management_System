@@ -47,10 +47,10 @@ public class CustomerRepository {
         }
     }
 
-    public Customer findByIdCustomer(int id) throws CustomerNotFoundException {//ПОДРЕДАЧИЛ НАДО ПРОВЕРЯТЬ И ТЕСТИТЬ
+    public Customer findByIdCustomer(String id) throws CustomerNotFoundException {//ПОДРЕДАЧИЛ НАДО ПРОВЕРЯТЬ И ТЕСТИТЬ
         return  findAllCustomer().stream()
                 .filter(customer -> customer.getID().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with ID: " + id));
+                .orElseThrow(() -> new CustomerNotFoundException("Пользователь не найден: " + id));
     }
 }

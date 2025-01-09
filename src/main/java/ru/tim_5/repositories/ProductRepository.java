@@ -3,14 +3,12 @@ package ru.tim_5.repositories;
 // <<<<<<< product
 
 import ru.tim_5.exeptions.ProductNotFoundException;
-import ru.tim_5.models.Customer;
 import ru.tim_5.models.Product;
-import ru.tim_5.models.ProductCategory;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepository {
@@ -51,12 +49,12 @@ public class ProductRepository {
         }
     }
 
-    public Product findByIdProduct(int id) {
+    public Product findByIdProduct(String id) {
         //ПОДРЕДАЧИЛ НАДО ПРОВЕРЯТЬ И ТЕСТИТЬ
         return findAllProducts().stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new ProductNotFoundException("Product not found with ID: " + id));
+                .orElseThrow(() -> new ProductNotFoundException("Продукт с таким ID не найден: " + id));
 
     }
 }
