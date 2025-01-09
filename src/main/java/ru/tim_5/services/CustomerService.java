@@ -2,12 +2,9 @@ package ru.tim_5.services;
 
 import ru.tim_5.exeptions.CustomerNotFoundException;
 import ru.tim_5.models.Customer;
-import ru.tim_5.models.CustomerCategory;
+import ru.tim_5.enums.CustomerCategory;
 import ru.tim_5.repositories.CustomerRepository;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 public class CustomerService {
@@ -21,6 +18,8 @@ public class CustomerService {
     public Customer addCustomer(String name, CustomerCategory category) {
         Customer customer = new Customer(name, category);
         return customerRepositories.saveCustomers(customer);
+
+
     }
 
     public List<Customer> getAll(){
@@ -28,8 +27,10 @@ public class CustomerService {
         return customerRepositories.findAllCustomer();
     }
 
-    public Customer getCustomer(int id) throws CustomerNotFoundException {
+    public Customer getCustomerId(String id) throws CustomerNotFoundException {
         return customerRepositories.findByIdCustomer(id);
     }
+
+
 
 }

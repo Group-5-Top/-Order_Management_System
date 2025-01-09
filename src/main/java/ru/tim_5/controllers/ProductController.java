@@ -1,12 +1,9 @@
 package ru.tim_5.controllers;
 
-import ru.tim_5.models.CustomerCategory;
+import ru.tim_5.enums.ProductCategory;
 import ru.tim_5.models.Product;
-import ru.tim_5.models.ProductCategory;
 import ru.tim_5.services.ProductService;
-import ru.tim_5.repositories.ProductRepository;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class ProductController {
@@ -42,4 +39,13 @@ public class ProductController {
         // Выводим товары на экран
         productService.getAll().forEach((el)-> System.out.println("Товар: {" + el + "}"));
     }
+
+    public Product getProductById(){
+        //Выводим товар по ID
+        System.out.println("Введите ID товара: ");
+        System.out.println(productService.getProductId(sc.nextLine()));
+        return productService.getProductId(sc.nextLine());
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package ru.tim_5.controllers;
 
-import ru.tim_5.models.CustomerCategory;
+import ru.tim_5.enums.CustomerCategory;
+import ru.tim_5.models.Customer;
 import ru.tim_5.services.CustomerService;
 
 import java.util.Scanner;
@@ -35,5 +36,15 @@ public class CustomerController {
     public void getAllCustomers(){
         // Выводим клиентов на экран
         customerServices.getAll().forEach((el)-> System.out.println("Покупатель: {" + el + "}"));
+    }
+
+
+
+    public Customer getCustomer(){
+        //Выводим клиента по ID
+        System.out.println("Введите ID покупателя: ");
+        String id = sc.nextLine();
+        System.out.println(customerServices.getCustomerId(id));
+        return customerServices.getCustomerId(id);
     }
 }

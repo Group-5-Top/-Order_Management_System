@@ -1,4 +1,4 @@
-package ru.tim_5.models;
+package ru.tim_5.enums;
 
 public enum CustomerCategory {
     // new1

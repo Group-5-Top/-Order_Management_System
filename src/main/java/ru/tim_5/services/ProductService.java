@@ -1,8 +1,7 @@
 package ru.tim_5.services;
 
 import ru.tim_5.exeptions.ProductNotFoundException;
-import ru.tim_5.models.Customer;
-import ru.tim_5.models.ProductCategory;
+import ru.tim_5.enums.ProductCategory;
 import ru.tim_5.repositories.ProductRepository;
 import ru.tim_5.models.Product;
 
@@ -23,7 +22,9 @@ public class ProductService {
         return productRepository.findAllProducts();
     }
 
-    public Product getProductId(int id) throws ProductNotFoundException {
+    public Product getProductId(String id) throws ProductNotFoundException {
         return productRepository.findByIdProduct(id);
     }
+
+
 }

@@ -1,5 +1,7 @@
 package ru.tim_5.models;
 
+import ru.tim_5.enums.ProductCategory;
+
 import java.util.Objects;
 
 public class Product {
@@ -7,6 +9,8 @@ public class Product {
     private String name;
     private double price;
     private ProductCategory category;
+
+
 
     public Product() {
         this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Product
