@@ -1,5 +1,7 @@
 package ru.tim_5.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.tim_5.repositories.CustomerRepository;
 import ru.tim_5.repositories.OrderRepository;
 import ru.tim_5.repositories.ProductRepository;
@@ -11,13 +13,14 @@ import java.util.Scanner;
 
 public class MainController {
 
+    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+
     Scanner sc = new Scanner(System.in);
 
-    OrderRepository orderRepo = new OrderRepository();//ДОБАВИЛ
-    OrderService orderService = new OrderService(orderRepo);//ДОБАВИЛ
-    OrderController orderController = new OrderController(orderService);//ДОБАВИЛ
+    OrderRepository orderRepo = new OrderRepository();
+    OrderService orderService = new OrderService(orderRepo);
+    OrderController orderController = new OrderController(orderService);
 
-//ДОБАВИЛ
     ProductRepository productRepository= new ProductRepository();
     ProductService productService = new ProductService(productRepository);
     ProductController productController = new ProductController(productService);
@@ -27,6 +30,7 @@ public class MainController {
     CustomerController customerController = new CustomerController(customerServices);
 
     public void start(){
+        logger.debug("Start main controller");
         while(true){
             System.out.print("Программа запущена");
             System.out.println("\n1. Управление товарами");
@@ -46,11 +50,13 @@ public class MainController {
                   default -> System.out.println("Такой команды нет");
                 }
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                logger.error(e.getMessage());
             }
+            logger.info("Finish main controller");
         }
     }
-    public void startProduct(){//ДОБАВИЛ
+    public void startProduct(){
+        logger.debug("Start product controller");
         boolean exit = true;
         while(exit){
             System.out.println("1. Добавить товар");
@@ -70,11 +76,13 @@ public class MainController {
                     default -> System.out.println("Такой команды нет");
                 }
             }catch (Exception e) {
-                System.out.println(e.getMessage());
+                logger.error(e.getMessage());
             }
+            logger.info("Finish product controller");
         }
     }
     public void startCustomer() {
+        logger.debug("Start customer controller");
         boolean exit = true;
         while (exit) {
             System.out.println("1. Добавить покупателя");
@@ -94,15 +102,18 @@ public class MainController {
                     default -> System.out.println("Такой команды нет");
                 }
             }catch (Exception e) {
-                System.out.println(e.getMessage());
+                logger.error(e.getMessage());
             }
+            logger.info("Finish customer controller");
         }
     }
-    public void startOrder() {//ДОБАВИЛ
+    public void startOrder() {
+        logger.debug("Start order controller");
         boolean exit = true;
         while (exit) {
             System.out.println("1. Создать заказ");
             System.out.println("2. Показать все заказы");
+            System.out.println("3. Показать заказ по id");
             System.out.println("0. Назад");
 
             System.out.println("Выбери опцию:");
@@ -112,15 +123,15 @@ public class MainController {
                 switch (console){
                     case 1 -> orderController.addOrder();
                     case 2 -> orderController.getAllOrders();
+                    case 3 -> orderController.getProductById();
 //                    case 3 -> //В БУДУЮЩЕМ ИЗМЕНИТЬ СТАТУС ЗАКАЗА
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");
                 }
             }catch (Exception e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
+            logger.info("Finish order controller");
         }
     }
-
-
 }

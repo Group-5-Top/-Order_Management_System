@@ -71,7 +71,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "["+ID  +"]; ["+ customer+ "]; "+ product +"; " + category;
+        return "["+ ID  +"]; [" + customer + "]; " + product + "; " + category;
     }
 
     public Order(String s){//ДОБАВИЛ СВОЙ МЕТОД ДЛЯ ПРЕОБРОЗОВАНИЯ ФАИЛА
@@ -89,8 +89,6 @@ public class Order {
         Order order = (Order) o;
         return Objects.equals(ID, order.ID) && Objects.equals(customer, order.customer) && Objects.equals(product, order.product) && category == order.category;
     }
-
-
 
     @Override
     public int hashCode() {

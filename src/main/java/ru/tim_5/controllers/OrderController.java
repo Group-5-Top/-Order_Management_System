@@ -1,8 +1,11 @@
 package ru.tim_5.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.tim_5.enums.CustomerCategory;
 import ru.tim_5.enums.OrderCategory;
 import ru.tim_5.models.Customer;
+import ru.tim_5.models.Order;
 import ru.tim_5.models.Product;
 import ru.tim_5.repositories.CustomerRepository;
 import ru.tim_5.repositories.ProductRepository;
@@ -15,6 +18,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class OrderController {
+
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     private final OrderService orderService;
     private Customer customer;
@@ -35,7 +40,7 @@ public class OrderController {
     }
 
     public void addOrder() {
-
+        logger.debug("Start add order");
         System.out.println("Выбрать покупателя по ID");
 
         Customer customer1 = customerController.getCustomer();
@@ -45,10 +50,9 @@ public class OrderController {
         while (stop) {
             System.out.println("Нажмите 1 для выбора товар по ID или нажмите 0 для завершения: ");
             int start = sc.nextInt();
-
             switch (start) {
-                case 1 : listProduct.add(productController.getProductById());
-                sc.nextLine();
+                case 1 :
+                    System.out.println(listProduct.add(productController.getProductById()));
                     break;
                 case 0 : stop = false;
                     break;
@@ -57,28 +61,38 @@ public class OrderController {
             }
         }
 
-
         System.out.println("Введи категорию заказа( NEW, PROCESSING, COMPLETED, CANCELLED): ");
         try {
             category = OrderCategory.valueOf(sc.next());
         } catch (IllegalArgumentException e) {
-            System.out.println("Ошибка: Введенная категория некорректна. " +
-                    "Пожалуйста, выберите одну из: NEW, PROCESSING, COMPLETED, CANCELLED.");
+            logger.error("\"Ошибка: Введенная категория некорректна." +
+                    "Пожалуйста, выберите одну из: NEW, PROCESSING, COMPLETED, CANCELLED.\n");
+
         }
 
         String view = orderService.addOrder(customer1, listProduct, category ).toString();
         System.out.println(view);
+        logger.info("End add order");
     }
 
     public void getAllOrders() {
-            // Выводим клиентов на экран
-            orderService.getAll().forEach(System.out::println);
+        logger.debug("Start getAllOrders");
+        // Выводим клиентов на экран
+        orderService.getAll().forEach(System.out::println);
+        logger.info("End getAllOrders");
+    }
+
+    public Order getProductById(){
+        logger.debug("Start getProductById");
+        //Выводим товар по ID
+        System.out.println("Введите ID заказа: ");
+        logger.info("End getProductById");
+        return orderService.getOrderId(sc.nextLine()) ;
 
     }
 
 
-
-    }
+}
 
 
 
