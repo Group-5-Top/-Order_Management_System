@@ -46,13 +46,13 @@ public class OrderController {
         Customer customer1 = customerController.getCustomer();
 
         boolean stop = true;
-        List <Product> listProduct = new ArrayList<>();
+        List <String> listProductID = new ArrayList<>();
         while (stop) {
             System.out.println("Нажмите 1 для выбора товар по ID или нажмите 0 для завершения: ");
             int start = sc.nextInt();
             switch (start) {
                 case 1 :
-                    System.out.println(listProduct.add(productController.getProductById()));
+                    System.out.println(listProductID.add(productController.getProductById().getId()));
                     break;
                 case 0 : stop = false;
                     break;
@@ -70,7 +70,7 @@ public class OrderController {
 
         }
 
-        String view = orderService.addOrder(customer1, listProduct, category ).toString();
+        String view = orderService.addOrder(customer1.getID(), listProductID, category ).toString();
         System.out.println(view);
         logger.info("End add order");
     }

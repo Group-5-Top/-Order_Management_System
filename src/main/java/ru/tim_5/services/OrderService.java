@@ -19,9 +19,9 @@ public class OrderService {
         this.orderRepositories = orderRepositories;
     }
 
-    public Order addOrder(Customer customer, List<Product> products, OrderCategory category) {
+    public Order addOrder(String customerID, List<String> productsID, OrderCategory category) {
         logger.debug("Adding new order");
-        Order order = new Order(customer, products, category);
+        Order order = new Order(customerID, productsID, category);
         logger.info("Order created");
         return orderRepositories.saveOrder(order);
     }
