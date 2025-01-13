@@ -87,6 +87,7 @@ public class Order {
         }
         this.productID = www;
         this.category = OrderCategory.valueOf(str[3]);
+
     }
 
     @Override
