@@ -2,7 +2,6 @@ package ru.tim_5.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.tim_5.enums.CustomerCategory;
 import ru.tim_5.enums.OrderCategory;
 import ru.tim_5.models.Customer;
 import ru.tim_5.models.Order;
@@ -19,8 +18,6 @@ import java.util.Scanner;
 
 public class OrderController {
 
-    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
-
     private final OrderService orderService;
     private Customer customer;
     private Product product;
@@ -30,35 +27,37 @@ public class OrderController {
     CustomerService customerServices = new CustomerService(customerRepositories);
     CustomerController customerController = new CustomerController(customerServices);
 
-    ProductRepository productRepository= new ProductRepository();
+    ProductRepository productRepository = new ProductRepository();
     ProductService productService = new ProductService(productRepository);
     ProductController productController = new ProductController(productService);
 
     Scanner sc = new Scanner(System.in);
+
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
     public void addOrder() {
-        logger.debug("Start add order");
         System.out.println("Выбрать покупателя по ID");
 
         Customer customer1 = customerController.getCustomer();
 
 
         boolean stop = true;
-        List <String> listProductID = new ArrayList<>();
+        List<String> listProductID = new ArrayList<>();
         while (stop) {
             System.out.println("Нажмите 1 для выбора товар по ID или нажмите 0 для завершения: ");
             int start = sc.nextInt();
             switch (start) {
-                case 1 :
+                case 1:
                     System.out.println(listProductID.add(productController.getProductById().getId()));
                     break;
-                case 0 : stop = false;
+                case 0:
+                    stop = false;
                     break;
 
-                default : System.out.println("Такой команды нет!");
+                default:
+                    System.out.println("Такой команды нет!");
             }
         }
 
@@ -66,33 +65,67 @@ public class OrderController {
         try {
             category = OrderCategory.valueOf(sc.next());
         } catch (IllegalArgumentException e) {
-            logger.error("\"Ошибка: Введенная категория некорректна." +
+            System.out.println("\"Ошибка: Введенная категория некорректна." +
                     "Пожалуйста, выберите одну из: NEW, PROCESSING, COMPLETED, CANCELLED.\n");
 
         }
 
-        String view = orderService.addOrder(customer1.getID(), listProductID, category ).toString();
+        String view = orderService.addOrder(customer1.getID(), listProductID, category).toString();
         System.out.println(view);
-        logger.info("End add order");
     }
 
+    /**
+     * Метод, выводит все заказы в консоль. Получает List<Order> из OrderService
+     */
     public void getAllOrders() {
-        logger.debug("Start getAllOrders");
-        // Выводим клиентов на экран
-        orderService.getAll().forEach(System.out::println);
-        logger.info("End getAllOrders");
+        System.out.println("Список всех заказов: ");
+        List<Order> listOrder = orderService.getListOrder();
+        for (int i = 0; i < listOrder.size(); i++) {
+            System.out.println("Заказ_№" + (i + 1) + ": " + listOrder.get(i));
+        }
     }
 
-    public Order getProductById(){
-        logger.debug("Start getProductById");
-        //Выводим товар по ID
+    public void getProductById() throws RuntimeException {
         System.out.println("Введите ID заказа: ");
-        logger.info("End getProductById");
-        return orderService.getOrderId(sc.nextLine()) ;
-
+        System.out.println("Ваш заказ найден. " + "Заказ: " + orderService.getOrderId(sc.nextLine()));
     }
 
+    /**
+     * Метод, позволяет делать разные изменения в имеющихся заказах.
+     * При одном вызове работает с одним заказом.
+     */
+    public void changeOrder() {
+        boolean exit = true;
+        while (exit) {
+            try {
+                System.out.println("Список всех заказов: ");
+                List<Order> listOrder = orderService.getListOrder();
+                for (int i = 0; i < listOrder.size(); i++) {
+                    System.out.println("Заказ_№" + (i + 1) + ": " + listOrder.get(i));
+                }
+                System.out.println("Выберите из списка всех заказов тот заказ, в который необходимо внести изменение.");
+                int number = sc.nextInt() - 1;
+                Order order = listOrder.get(number);
+                System.out.println("1. Изменить категорию заказа.");
+                System.out.println("0. Назад");
 
+                System.out.println("Выбери опцию:");
+                int console = sc.nextInt();
+                sc.nextLine();
+                switch (console) {
+                    case 1 -> {
+                        orderService.changeOrderCategory(order.getID(), number);
+                        exit = false;
+                    }
+                    case 0 -> exit = false;
+                    default -> System.out.println("Такой команды нет");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Вы ввели несуществующий номер заказа. Введите номер вашего заказа");
+            }
+        }
+    }
 }
 
 

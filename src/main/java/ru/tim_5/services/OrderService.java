@@ -4,40 +4,46 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.tim_5.enums.OrderCategory;
 import ru.tim_5.exeptions.OrderNotFoundException;
-import ru.tim_5.models.Customer;
 import ru.tim_5.models.Order;
-import ru.tim_5.models.Product;
 import ru.tim_5.repositories.OrderRepository;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class OrderService {
     private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
     private final OrderRepository orderRepositories;
-
+    Scanner scanner = new Scanner(System.in);
 
     public OrderService(OrderRepository orderRepositories) {
         this.orderRepositories = orderRepositories;
     }
 
     public Order addOrder(String customerID, List<String> productsID, OrderCategory category) {
-        logger.debug("Adding new order");
         Order order = new Order(customerID, productsID, category);
-        logger.info("Order created");
         return orderRepositories.saveOrder(order);
     }
 
-    public List<Order> getAll(){
-        logger.debug("Getting all orders");
-        // Получаем список клиентов
-        logger.info("Getting all orders");
+    /**
+     * Метод для получения списка заказов из OrderRepositories.
+     *
+     * @return List<Order>
+     */
+    public List<Order> getListOrder() throws RuntimeException {
         return orderRepositories.findAllOrder();
     }
 
     public Order getOrderId(String id) throws OrderNotFoundException {
-        logger.info("Getting order with id {}", id);
         return orderRepositories.findByIdOrder(id);
     }
 
-
+    public void changeOrderCategory(String id, int lineNumber){
+        logger.debug("Старт: Изменение статуса заказа.");
+        Order order =  orderRepositories.findByIdOrder(id);
+        System.out.println("Введите новый статус заказа: NEW, PROCESSING, COMPLETED, CANCELLED");
+        order.setCategory(OrderCategory.valueOf(scanner.next().toUpperCase()));
+        String content = order.toString();
+        orderRepositories.replaceLineInFile(orderRepositories.getFilePath(), lineNumber, content);
+        logger.info("Статус заказа успешно изменён.");
+    }
 }

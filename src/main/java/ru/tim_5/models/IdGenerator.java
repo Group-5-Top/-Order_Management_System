@@ -11,8 +11,6 @@ public class IdGenerator {
         // Генерируем случайный UUID
 
         // Форматируем уникальные идентификаторы как "<timestamp>-<uniquePart>"
-        return UUID.randomUUID().toString();
-
-
+        return UUID.randomUUID().toString().substring(0,5);
     }
 }

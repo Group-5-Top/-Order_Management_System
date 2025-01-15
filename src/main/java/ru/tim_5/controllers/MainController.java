@@ -21,7 +21,7 @@ public class MainController {
     OrderService orderService = new OrderService(orderRepo);
     OrderController orderController = new OrderController(orderService);
 
-    ProductRepository productRepository= new ProductRepository();
+    ProductRepository productRepository = new ProductRepository();
     ProductService productService = new ProductService(productRepository);
     ProductController productController = new ProductController(productService);
 
@@ -29,9 +29,9 @@ public class MainController {
     CustomerService customerServices = new CustomerService(customerRepositories);
     CustomerController customerController = new CustomerController(customerServices);
 
-    public void start(){
+    public void start() {
         logger.debug("Start main controller");
-        while(true){
+        while (true) {
             System.out.print("Программа запущена");
             System.out.println("\n1. Управление товарами");
             System.out.println("2. Управление покупателями");
@@ -42,12 +42,12 @@ public class MainController {
             int console = sc.nextInt(); // Ввод цифры для управления
             sc.nextLine();
             try {
-                switch (console){
-                  case 1 -> startProduct();
-                  case 2 -> startCustomer();
-                  case 3 -> startOrder();
-                  case 0 -> System.exit(0);
-                  default -> System.out.println("Такой команды нет");
+                switch (console) {
+                    case 1 -> startProduct();
+                    case 2 -> startCustomer();
+                    case 3 -> startOrder();
+                    case 0 -> System.exit(0);
+                    default -> System.out.println("Такой команды нет");
                 }
             } catch (Exception e) {
                 logger.error(e.getMessage());
@@ -55,10 +55,11 @@ public class MainController {
             logger.info("Finish main controller");
         }
     }
-    public void startProduct(){
+
+    public void startProduct() {
         logger.debug("Start product controller");
         boolean exit = true;
-        while(exit){
+        while (exit) {
             System.out.println("1. Добавить товар");
             System.out.println("2. Показать все товары");
             System.out.println("3. Найти товар по ID");
@@ -68,19 +69,20 @@ public class MainController {
             int console = sc.nextInt();
             sc.nextLine();
             try {
-                switch (console){
+                switch (console) {
                     case 1 -> productController.addProduct(); //метод добавления товара
                     case 2 -> productController.getAllProducts(); // метод показа всех товаров
                     case 3 -> productController.getProductById();// метод поиска по ID
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 logger.error(e.getMessage());
             }
             logger.info("Finish product controller");
         }
     }
+
     public void startCustomer() {
         logger.debug("Start customer controller");
         boolean exit = true;
@@ -94,19 +96,20 @@ public class MainController {
             int console = sc.nextInt();
             sc.nextLine();
             try {
-                switch (console){
+                switch (console) {
                     case 1 -> customerController.addCustomer();
                     case 2 -> customerController.getAllCustomers();
                     case 3 -> customerController.getCustomer();
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 logger.error(e.getMessage());
             }
             logger.info("Finish customer controller");
         }
     }
+
     public void startOrder() {
         logger.debug("Start order controller");
         boolean exit = true;
@@ -114,21 +117,22 @@ public class MainController {
             System.out.println("1. Создать заказ");
             System.out.println("2. Показать все заказы");
             System.out.println("3. Показать заказ по id");
+            System.out.println("4. Изменить заказ");
             System.out.println("0. Назад");
 
             System.out.println("Выбери опцию:");
             int console = sc.nextInt();
             sc.nextLine();
             try {
-                switch (console){
+                switch (console) {
                     case 1 -> orderController.addOrder();
                     case 2 -> orderController.getAllOrders();
                     case 3 -> orderController.getProductById();
-//                    case 3 -> //В БУДУЮЩЕМ ИЗМЕНИТЬ СТАТУС ЗАКАЗА
+                    case 4 -> orderController.changeOrder();
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 logger.error(e.getMessage());
             }
             logger.info("Finish order controller");
