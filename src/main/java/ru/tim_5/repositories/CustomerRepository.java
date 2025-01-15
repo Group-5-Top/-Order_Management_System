@@ -18,7 +18,6 @@ public class CustomerRepository {
     private String fileName = "customer.txt";
 
     public CustomerRepository() {
-        logger.debug("Creating new customer repository");
         this.filePath = Path.of(fileName);
         try {
             if (!Files.exists(filePath)){
@@ -28,7 +27,6 @@ public class CustomerRepository {
         }catch (IOException e){
             logger.error(e.getMessage());
         }
-        logger.info("New customer repository created");
     }
 
     public Customer saveCustomers(Customer customer) {
@@ -44,10 +42,8 @@ public class CustomerRepository {
     }
 
     public List<Customer> findAllCustomer(){
-        logger.debug("Finding all customers");
         ////Метод получения листа покупателей из файла
         try {
-            logger.info("Finding all customers");
             return Files.readAllLines(filePath).stream()
                     .map(Customer::new)
                     .toList();
@@ -57,7 +53,6 @@ public class CustomerRepository {
     }
 
     public Customer findByIdCustomer(String id) throws CustomerNotFoundException {
-        logger.info("Finding customer with id {}", id);
         return  findAllCustomer().stream()
                 .filter(customer -> customer.getID().equals(id))
                 .findFirst()

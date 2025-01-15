@@ -19,15 +19,13 @@ public class CustomerService {
     }
 
     public Customer addCustomer(String name, CustomerCategory category) {
-        logger.debug("Start add customer");
         Customer customer = new Customer(name, category);
-        logger.debug("End add customer");
         return customerRepositories.saveCustomers(customer);
     }
 
     public List<Customer> getAll(){
-        logger.info("get all customers");
         // Получаем список клиентов
+        logger.info("get all customers");
         return customerRepositories.findAllCustomer();
     }
 

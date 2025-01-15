@@ -17,9 +17,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
     public Product addProduct(String name, Double price, ProductCategory category) {
-        logger.debug("Start add product");
         Product product = new Product(name, price, category);
-        logger.info("End add product");
         return productRepository.saveProduct(product);
     }
     public List<Product> getAll() {

@@ -75,17 +75,19 @@ public class Order {
         return  ID  +"; " + customerID + "; " + productID + "; " + category;
     }
 
-    public Order(String s){//ДОБАВИЛ СВОЙ МЕТОД ДЛЯ ПРЕОБРОЗОВАНИЯ ФАИЛА
+
+    public Order(String s){
+        // Конструктор, читает строку заказа из файла и создаёт по ней объект заказа.
         String[] str = s.split("; ");
         this.ID = str[0];
         this.customerID = str[1];
         String ks = str[2].replace("[", "").replace("]", "");
-        String[] str2 = ks.split(",");
-        List<String> www = new ArrayList<>();
+        String[] str2 = ks.split(", ");
+        List<String> list = new ArrayList<>();
         for (int i = 0; i < str2.length; i++) {
-            www.add(str2[i]);
+            list.add(str2[i]);
         }
-        this.productID = www;
+        this.productID = list;
         this.category = OrderCategory.valueOf(str[3]);
 
     }

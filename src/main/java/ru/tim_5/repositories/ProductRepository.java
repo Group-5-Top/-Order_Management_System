@@ -20,7 +20,6 @@ public class ProductRepository {
     private String fileName = "product.txt";
 
     public ProductRepository() {
-        logger.info("Creating a new product repository");
         this.filePath = Path.of(fileName);
         try {
             if (!Files.exists(filePath)){
@@ -30,7 +29,6 @@ public class ProductRepository {
         }catch (IOException e){
             logger.error(e.getMessage());
         }
-        logger.info("Created a new product repository");
     }
 
     public Product saveProduct(Product product) {
@@ -46,10 +44,8 @@ public class ProductRepository {
     }
 
     public List<Product> findAllProducts() {
-        logger.debug("Finding all products");
         //Метод получения листа продуктов из файла
         try {
-            logger.info("Found all products");
             return Files.readAllLines(filePath).stream()
                     .map(Product::new)
                     .toList();
@@ -59,8 +55,6 @@ public class ProductRepository {
     }
 
     public Product findByIdProduct(String id) {
-        //ПОДРЕДАЧИЛ НАДО ПРОВЕРЯТЬ И ТЕСТИТЬ
-        logger.info("Finding product by id");
         return findAllProducts().stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst()
