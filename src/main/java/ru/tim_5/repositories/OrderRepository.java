@@ -36,7 +36,7 @@ public class OrderRepository {
     }
 
     /**
-     * Метод сохраняет новый заказ в файле заказов.
+     * Метод, который непосредственно сохраняет объект Order в файл
      * @param: Order order: Заказ
      * @return Order order: Сохранённый заказ
      */
@@ -53,7 +53,9 @@ public class OrderRepository {
 
     /**
      * Метод перезаписывает заказ в файл заказов.
-     * @param: Path filePath, int lineNumber, String content
+     * @param: Path filePath
+     * * @param: int lineNumber
+     * * @param: String content
      */
     public void replaceLineInFile(Path filePath, int lineNumber, String content) {
         logger.debug("Overwriting order. ");
@@ -79,6 +81,10 @@ public class OrderRepository {
         logger.info("Order overwriting. ");
     }
 
+    /**
+     * Метод чтения списка заказов из строк файла, с дальнейшим преобразованием их в List<Order>
+     * @return List<Order>
+     */
     public List<Order> findAllOrder(){
         //Метод получения листа заказов из файла
         try {
@@ -91,9 +97,8 @@ public class OrderRepository {
     }
 
     /**
-     * Метод, который возвращает заказ по введённому ID.
-     * Берёт заказ из файла с заказами.
-     * @param id String id
+     * Метод находит покупателя по ID и возвращает его в виде объекта Order
+     * @param: String id
      * @return Order
      * @throws: OrderNotFoundException
      */

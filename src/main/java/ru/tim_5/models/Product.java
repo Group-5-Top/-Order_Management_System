@@ -13,25 +13,33 @@ public class Product {
 
 
     public Product() {
-        this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Product
+        this.ID = IdGenerator.generateID();
     }
 
     public Product(String name, double price, ProductCategory category) {
-        this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Product
+        this.ID = IdGenerator.generateID();
         this.name = name;
         this.price = price;
         this.category = category;
     }
 
+    /**
+     * Конструктор копирования
+     * @param other: Product other
+     */
     public Product(Product other) {
-        ID = other.ID; // Уникальное ID копируется с имеющегося экземпляра
+        ID = other.ID;
         this.name = other.name;
         this.price = other.price;
         this.category = other.category;
     }
 
+    /**
+     * Конструктор Builder
+     * @param other: BuilderProduct other
+     */
     public Product(BuilderProduct other) {
-        ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Product
+        ID = IdGenerator.generateID();
         this.name = other.name;
         this.price = other.price;
         this.category = other.category;
@@ -83,7 +91,11 @@ public class Product {
         return ID + ", " + name + ", " + price + ", " + category;
     }
 
-    public Product(String s){//ДОБАВИЛ СВОЙ МЕТОД ДЛЯ ПРЕОБРОЗОВАНИЯ ФАИЛА
+    /**
+     * Метод-конструктор, который получает строку из файла и преобразует её в объект Product.
+     * @param s: String s
+     */
+    public Product(String s){
         String[] str = s.split(", ");
         this.ID = str[0];
         this.name = str[1];
@@ -118,5 +130,4 @@ public class Product {
             return new Product(this);
         }
     }
-
 }

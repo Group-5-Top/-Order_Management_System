@@ -1,7 +1,5 @@
 package ru.tim_5.repositories;
 
-// <<<<<<< product
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.tim_5.controllers.ProductController;
@@ -31,6 +29,11 @@ public class ProductRepository {
         }
     }
 
+    /**
+     * Метод, который непосредственно сохраняет объект Product в файл
+     * @param product: Product
+     * @return Product
+     */
     public Product saveProduct(Product product) {
         logger.debug("Saving product");
         //Метод сохраняет продукт в файл
@@ -43,6 +46,10 @@ public class ProductRepository {
         return product;
     }
 
+    /**
+     * Метод чтения списка товаров из строк файла, с дальнейшим преобразованием их в List<Product>
+     * @return List<Product>
+     */
     public List<Product> findAllProducts() {
         //Метод получения листа продуктов из файла
         try {
@@ -54,7 +61,13 @@ public class ProductRepository {
         }
     }
 
-    public Product findByIdProduct(String id) {
+    /**
+     * Метод находит товар по ID и возвращает его в виде объекта Product
+     * @param id String id
+     * @return Product
+     * @throws: ProductNotFoundException
+     */
+    public Product findByIdProduct(String id) throws ProductNotFoundException {
         return findAllProducts().stream()
                 .filter(product -> product.getId().equals(id))
                 .findFirst()

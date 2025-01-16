@@ -1,7 +1,5 @@
 package ru.tim_5.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ru.tim_5.enums.ProductCategory;
 import ru.tim_5.models.Product;
 import ru.tim_5.services.ProductService;
@@ -21,6 +19,9 @@ public class ProductController {
         this.productService = productService;
     }
 
+    /**
+     * Метод добавления товаров. Передаёт данные с консоли в метод добавления в ProductService
+     */
     public void addProduct(){
         System.out.println("Введи название товара: ");
         name = sc.next();
@@ -38,11 +39,18 @@ public class ProductController {
         System.out.println(view);
     }
 
+    /**
+     * Метод, выводит все товары в консоль. Получает List<Product> из ProductService
+     */
     public void getAllProducts(){
         // Выводим товары на экран
         productService.getAll().forEach((el)-> System.out.println("Товар: {" + el + "}"));
     }
 
+    /**
+     * Метод получения объекта товара по его ID.
+     * @return объект Product
+     */
     public Product getProductById(){
         //Выводим товар по ID
         System.out.println("Введите ID товара: ");

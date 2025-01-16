@@ -5,31 +5,38 @@ import ru.tim_5.enums.CustomerCategory;
 import java.util.Objects;
 
 public class Customer {
-    // new2
+
     private final String ID;
     private String name;
     private CustomerCategory category;
 
     public Customer() {
-        this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Customer
+        this.ID = IdGenerator.generateID();
     }
 
     public Customer(String name, CustomerCategory category) {
-        this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Customer
+        this.ID = IdGenerator.generateID();
         this.name = name;
         this.category = category;
     }
 
 
-
+    /**
+     * Конструктор копирования
+     * @param other: Customer other
+     */
     public Customer(Customer other) {
-        ID = other.ID; // Уникальное ID копируется с имеющегося экземпляра
+        ID = other.ID;
         this.name = other.name;
         this.category = other.category;
     }
 
+    /**
+     * Конструктор Builder
+     * @param other: BuilderCustomer other
+     */
     public Customer(BuilderCustomer other) {
-        ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Customer
+        ID = IdGenerator.generateID();
         this.name = other.name;
         this.category = other.category;
     }
@@ -73,8 +80,11 @@ public class Customer {
         return Objects.hash(ID, name, category);
     }
 
-
-    public Customer(String s){//ДОБАВИЛ СВОЙ МЕТОД ДЛЯ ПРЕОБРОЗОВАНИЯ ФАИЛА
+    /**
+     * Метод-конструктор, который получает строку из файла и преобразует её в объект Customer.
+     * @param s: String s
+     */
+    public Customer(String s){
         String[] str = s.split(", ");
         this.ID = str[0];
         this.name = str[1];
