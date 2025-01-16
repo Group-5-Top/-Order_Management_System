@@ -29,7 +29,7 @@ public class ProductController {
         price = sc.nextDouble();
         System.out.println("Введи категорию товара(FOOD, ELECTRONICS, CLOTHING): ");
         try {
-            category = ProductCategory.valueOf(sc.next());
+            category = ProductCategory.valueOf(sc.next().toUpperCase());
         } catch (IllegalArgumentException e) {
             System.out.println("Ошибка: Введенная категория некорректна. " +
                    "Пожалуйста, выберите одну из: FOOD, ELECTRONICS, CLOTHING.");
@@ -43,7 +43,6 @@ public class ProductController {
      * Метод, выводит все товары в консоль. Получает List<Product> из ProductService
      */
     public void getAllProducts(){
-        // Выводим товары на экран
         productService.getAll().forEach((el)-> System.out.println("Товар: {" + el + "}"));
     }
 
@@ -52,7 +51,6 @@ public class ProductController {
      * @return объект Product
      */
     public Product getProductById(){
-        //Выводим товар по ID
         System.out.println("Введите ID товара: ");
         return productService.getProductId(sc.nextLine());
     }

@@ -33,7 +33,7 @@ public class MainController {
      * Метод запуска программы и главного меню
      */
     public void start() {
-        logger.debug("Start main controller");
+        logger.debug("Старт: Маин контролера");
         while (true) {
             System.out.print("Программа запущена");
             System.out.println("\n1. Управление товарами");
@@ -55,7 +55,7 @@ public class MainController {
             } catch (Exception e) {
                 logger.error(e.getMessage());
             }
-            logger.info("Finish main controller");
+            logger.info("Финиш: Маин контролера");
         }
     }
 
@@ -63,7 +63,7 @@ public class MainController {
      * Метод вызова меню продуктов
      */
     public void startProduct() {
-        logger.debug("Start product controller");
+        logger.debug("Старт: Продукт контролера");
         boolean exit = true;
         while (exit) {
             System.out.println("1. Добавить товар");
@@ -85,7 +85,7 @@ public class MainController {
             } catch (Exception e) {
                 logger.error(e.getMessage());
             }
-            logger.info("Finish product controller");
+            logger.info("Финиш: Продукт контролера");
         }
     }
 
@@ -93,7 +93,7 @@ public class MainController {
      * Метод вызова меню покупателей
      */
     public void startCustomer() {
-        logger.debug("Start customer controller");
+        logger.debug("Старт: Кастомер контролера");
         boolean exit = true;
         while (exit) {
             System.out.println("1. Добавить покупателя");
@@ -115,7 +115,7 @@ public class MainController {
             } catch (Exception e) {
                 logger.error(e.getMessage());
             }
-            logger.info("Finish customer controller");
+            logger.info("Финиш: Кастомер контролера");
         }
     }
 
@@ -123,7 +123,7 @@ public class MainController {
      * Метод вызова меню заказов
      */
     public void startOrder() {
-        logger.debug("Start order controller");
+        logger.debug("Старт: Заказ контролера");
         boolean exit = true;
         while (exit) {
             System.out.println("1. Создать заказ");
@@ -147,7 +147,7 @@ public class MainController {
             } catch (Exception e) {
                 logger.error(e.getMessage());
             }
-            logger.info("Finish order controller");
+            logger.info("Финиш: Заказ контролера");
         }
     }
 }

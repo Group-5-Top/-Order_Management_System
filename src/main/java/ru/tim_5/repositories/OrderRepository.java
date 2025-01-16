@@ -2,9 +2,7 @@ package ru.tim_5.repositories;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.tim_5.exeptions.CustomerNotFoundException;
 import ru.tim_5.exeptions.OrderNotFoundException;
-import ru.tim_5.models.Customer;
 import ru.tim_5.models.Order;
 import ru.tim_5.services.OrderService;
 
@@ -41,13 +39,13 @@ public class OrderRepository {
      * @return Order order: Сохранённый заказ
      */
     public Order saveOrder(Order order) {
-        logger.debug("Saving order: {}", order);
+        logger.debug("Сохранение заказа");
         try {
             Files.write(filePath, (order + "\n").getBytes(), StandardOpenOption.APPEND);
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
-        logger.info("Order saved: {}", order);
+        logger.info("Заказ сохранен");
         return order;
     }
 
@@ -58,7 +56,7 @@ public class OrderRepository {
      * * @param: String content
      */
     public void replaceLineInFile(Path filePath, int lineNumber, String content) {
-        logger.debug("Overwriting order. ");
+        logger.debug("Перезапись заказа в фаил");
         try {
             // Читаем все строки из файла
             List<String> lines = Files.readAllLines(filePath);
@@ -78,7 +76,7 @@ public class OrderRepository {
             // Обработка неверного номера строки
             System.err.println(e.getMessage());
         }
-        logger.info("Order overwriting. ");
+        logger.info("Успешная перезапись");
     }
 
     /**
@@ -86,7 +84,6 @@ public class OrderRepository {
      * @return List<Order>
      */
     public List<Order> findAllOrder(){
-        //Метод получения листа заказов из файла
         try {
             return Files.readAllLines(filePath).stream()
                     .map(Order::new )
@@ -103,11 +100,10 @@ public class OrderRepository {
      * @throws: OrderNotFoundException
      */
     public Order findByIdOrder(String id) throws OrderNotFoundException {
-        logger.info("Finding order by id: {}", id);
+        logger.info("Писк заказа по id");
         return  findAllOrder().stream()
                 .filter(order -> order.getID().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new OrderNotFoundException("Заказ не найден: " + id));
     }
-
 }

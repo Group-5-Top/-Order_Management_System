@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.tim_5.exeptions.CustomerNotFoundException;
 import ru.tim_5.models.Customer;
-import ru.tim_5.services.OrderService;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -35,13 +34,13 @@ public class CustomerRepository {
      * @return Customer
      */
     public Customer saveCustomers(Customer customer) {
-        logger.debug("Saving customer information");
+        logger.debug("Сохранение покупателя");
         try {
             Files.write(filePath, (customer + "\n").getBytes(), StandardOpenOption.APPEND);
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
-        logger.info("New customer information saved");
+        logger.info("Покупатель сохранен");
         return customer;
     }
 
