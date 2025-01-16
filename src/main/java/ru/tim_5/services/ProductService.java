@@ -34,8 +34,7 @@ public class ProductService {
      * @return List<Product>
      */
     public List<Product> getAll() {
-        logger.info("getAll products");
-        // Получаем список продуктов
+        logger.info("Получение списка всех продуктов");
         return productRepository.findAllProducts();
     }
 
@@ -46,7 +45,7 @@ public class ProductService {
      * @throws: ProductNotFoundException
      */
     public Product getProductId(String id) throws ProductNotFoundException {
-        logger.info("getProductId product");
+        logger.info("Получение покупателя по id");
         return productRepository.findByIdProduct(id);
     }
 }

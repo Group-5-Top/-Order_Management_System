@@ -1,9 +1,7 @@
 package ru.tim_5.models;
 
-import ru.tim_5.enums.CustomerCategory;
 import ru.tim_5.enums.OrderCategory;
 
-import java.net.IDN;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

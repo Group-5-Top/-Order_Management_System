@@ -1,12 +1,8 @@
 package ru.tim_5.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ru.tim_5.enums.CustomerCategory;
 import ru.tim_5.models.Customer;
-import ru.tim_5.repositories.ProductRepository;
 import ru.tim_5.services.CustomerService;
-
 import java.util.Scanner;
 
 public class CustomerController {
@@ -28,7 +24,7 @@ public class CustomerController {
         name = sc.next();
         System.out.println("Введи категорию покупателя(NEW, REGULAR, VIP): ");
         try {
-            category = CustomerCategory.valueOf(sc.next());
+            category = CustomerCategory.valueOf(sc.next().toUpperCase());
         } catch (IllegalArgumentException e) {
             System.out.println("Ошибка: Введенная категория некорректна. " +
                     "Пожалуйста, выберите одну из: NEW, REGULAR, VIP.");

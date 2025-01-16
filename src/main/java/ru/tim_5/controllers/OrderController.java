@@ -1,17 +1,14 @@
 package ru.tim_5.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import ru.tim_5.enums.OrderCategory;
 import ru.tim_5.models.Customer;
 import ru.tim_5.models.Order;
-import ru.tim_5.models.Product;
 import ru.tim_5.repositories.CustomerRepository;
 import ru.tim_5.repositories.ProductRepository;
 import ru.tim_5.services.CustomerService;
 import ru.tim_5.services.OrderService;
 import ru.tim_5.services.ProductService;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,8 +16,6 @@ import java.util.Scanner;
 public class OrderController {
 
     private final OrderService orderService;
-    private Customer customer;
-    private Product product;
     private OrderCategory category;
 
     CustomerRepository customerRepositories = new CustomerRepository();
@@ -62,7 +57,7 @@ public class OrderController {
         }
         System.out.println("Введи категорию заказа( NEW, PROCESSING, COMPLETED, CANCELLED): ");
         try {
-            category = OrderCategory.valueOf(sc.next());
+            category = OrderCategory.valueOf(sc.next().toUpperCase());
         } catch (IllegalArgumentException e) {
             System.out.println("\"Ошибка: Введенная категория некорректна." +
                     "Пожалуйста, выберите одну из: NEW, PROCESSING, COMPLETED, CANCELLED.\n");

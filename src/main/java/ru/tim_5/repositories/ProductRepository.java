@@ -2,7 +2,6 @@ package ru.tim_5.repositories;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.tim_5.controllers.ProductController;
 import ru.tim_5.exeptions.ProductNotFoundException;
 import ru.tim_5.models.Product;
 
@@ -35,14 +34,13 @@ public class ProductRepository {
      * @return Product
      */
     public Product saveProduct(Product product) {
-        logger.debug("Saving product");
-        //Метод сохраняет продукт в файл
+        logger.debug("Сохранение продукта");
         try {
             Files.write(filePath, (product + "\n").getBytes(), StandardOpenOption.APPEND);
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
-        logger.debug("Product saved");
+        logger.debug("Продукт сохранен");
         return product;
     }
 
@@ -51,7 +49,6 @@ public class ProductRepository {
      * @return List<Product>
      */
     public List<Product> findAllProducts() {
-        //Метод получения листа продуктов из файла
         try {
             return Files.readAllLines(filePath).stream()
                     .map(Product::new)

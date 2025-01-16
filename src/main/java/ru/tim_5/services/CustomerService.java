@@ -6,7 +6,7 @@ import ru.tim_5.exeptions.CustomerNotFoundException;
 import ru.tim_5.models.Customer;
 import ru.tim_5.enums.CustomerCategory;
 import ru.tim_5.repositories.CustomerRepository;
-import ru.tim_5.repositories.ProductRepository;
+
 
 import java.util.List;
 
@@ -34,7 +34,6 @@ public class CustomerService {
      * @return List<Customer>
      */
     public List<Customer> getAll(){
-        // Получаем список клиентов
         logger.info("get all customers");
         return customerRepositories.findAllCustomer();
     }
