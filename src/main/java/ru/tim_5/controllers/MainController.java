@@ -29,6 +29,9 @@ public class MainController {
     CustomerService customerServices = new CustomerService(customerRepositories);
     CustomerController customerController = new CustomerController(customerServices);
 
+    /**
+     * Метод запуска программы и главного меню
+     */
     public void start() {
         logger.debug("Start main controller");
         while (true) {
@@ -56,6 +59,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Метод вызова меню продуктов
+     */
     public void startProduct() {
         logger.debug("Start product controller");
         boolean exit = true;
@@ -70,9 +76,9 @@ public class MainController {
             sc.nextLine();
             try {
                 switch (console) {
-                    case 1 -> productController.addProduct(); //метод добавления товара
-                    case 2 -> productController.getAllProducts(); // метод показа всех товаров
-                    case 3 -> productController.getProductById();// метод поиска по ID
+                    case 1 -> productController.addProduct();
+                    case 2 -> productController.getAllProducts();
+                    case 3 -> productController.getProductById();
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");
                 }
@@ -83,6 +89,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Метод вызова меню покупателей
+     */
     public void startCustomer() {
         logger.debug("Start customer controller");
         boolean exit = true;
@@ -110,6 +119,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Метод вызова меню заказов
+     */
     public void startOrder() {
         logger.debug("Start order controller");
         boolean exit = true;
@@ -127,7 +139,7 @@ public class MainController {
                 switch (console) {
                     case 1 -> orderController.addOrder();
                     case 2 -> orderController.getAllOrders();
-                    case 3 -> orderController.getProductById();
+                    case 3 -> orderController.getOrderById();
                     case 4 -> orderController.changeOrder();
                     case 0 -> exit = false;
                     default -> System.out.println("Такой команды нет");

@@ -19,6 +19,13 @@ public class OrderService {
         this.orderRepositories = orderRepositories;
     }
 
+    /**
+     * Метод создаёт объект Order и передаёт его в метод добавления в OrderRepositories
+     * @param: String customerID
+     * @param: List<String> productsID
+     * @param: OrderCategory category
+     * @return Order
+     */
     public Order addOrder(String customerID, List<String> productsID, OrderCategory category) {
         Order order = new Order(customerID, productsID, category);
         return orderRepositories.saveOrder(order);
@@ -26,17 +33,27 @@ public class OrderService {
 
     /**
      * Метод для получения списка заказов из OrderRepositories.
-     *
      * @return List<Order>
      */
     public List<Order> getListOrder() throws RuntimeException {
         return orderRepositories.findAllOrder();
     }
 
+    /**
+     * Метод получения заказа по ID
+     * @param: String id
+     * @return Order
+     * @throws: OrderNotFoundException
+     */
     public Order getOrderId(String id) throws OrderNotFoundException {
         return orderRepositories.findByIdOrder(id);
     }
 
+    /**
+     * Метод, передающий изменение статуса заказа в OrderRepositories
+     * @param: String id
+     * @param: int lineNumber
+     */
     public void changeOrderCategory(String id, int lineNumber){
         logger.debug("Старт: Изменение статуса заказа.");
         Order order =  orderRepositories.findByIdOrder(id);

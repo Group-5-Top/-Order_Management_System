@@ -29,9 +29,13 @@ public class CustomerRepository {
         }
     }
 
+    /**
+     * Метод, который непосредственно сохраняет объект Customer в файл
+     * @param customer: Customer.
+     * @return Customer
+     */
     public Customer saveCustomers(Customer customer) {
         logger.debug("Saving customer information");
-        //Метод сохраняет покупателя в файл
         try {
             Files.write(filePath, (customer + "\n").getBytes(), StandardOpenOption.APPEND);
         }catch (IOException e){
@@ -41,8 +45,11 @@ public class CustomerRepository {
         return customer;
     }
 
+    /**
+     * Метод чтения списка покупателей из строк файла, с дальнейшим преобразованием их в List<Customer>
+     * @return List<Customer>
+     */
     public List<Customer> findAllCustomer(){
-        ////Метод получения листа покупателей из файла
         try {
             return Files.readAllLines(filePath).stream()
                     .map(Customer::new)
@@ -52,6 +59,12 @@ public class CustomerRepository {
         }
     }
 
+    /**
+     * Метод находит покупателя по ID и возвращает его в виде объекта Customer
+     * @param id String id
+     * @return Customer
+     * @throws: CustomerNotFoundException
+     */
     public Customer findByIdCustomer(String id) throws CustomerNotFoundException {
         return  findAllCustomer().stream()
                 .filter(customer -> customer.getID().equals(id))

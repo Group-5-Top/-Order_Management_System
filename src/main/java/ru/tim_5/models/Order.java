@@ -16,31 +16,37 @@ public class Order {
 
 
     public Order() {
-        this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Order
+        this.ID = IdGenerator.generateID();
     }
 
     public Order(String customerID, List<String> productID, OrderCategory category) {
-        this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Product
+        this.ID = IdGenerator.generateID();
         this.customerID = customerID;
         this.productID = productID;
         this.category = category;
     }
 
+    /**
+     * Конструктор копирования
+     * @param other: Order other
+     */
     public Order(Order other) {
-        this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Product
+        this.ID = IdGenerator.generateID();
         this.customerID = other.customerID;
         this.productID = other.productID;
         this.category = other.category;
     }
 
+    /**
+     * Конструктор Builder
+     * @param other: BuilderOrder other
+     */
     public Order(BuilderOrder other) {
-        this.ID = IdGenerator.generateID(); // Уникальное ID генерируется при создании объекта Product
+        this.ID = IdGenerator.generateID();
         this.customerID = other.customerID;
         this.productID = other.productID;
         this.category = other.category;
     }
-
-
 
     public void setCustomer(String customerID) {
         this.customerID = customerID;
@@ -75,9 +81,11 @@ public class Order {
         return  ID  +"; " + customerID + "; " + productID + "; " + category;
     }
 
-
+    /**
+     * Метод-конструктор, который получает строку из файла и преобразует её в объект Order.
+     * @param s: String s
+     */
     public Order(String s){
-        // Конструктор, читает строку заказа из файла и создаёт по ней объект заказа.
         String[] str = s.split("; ");
         this.ID = str[0];
         this.customerID = str[1];

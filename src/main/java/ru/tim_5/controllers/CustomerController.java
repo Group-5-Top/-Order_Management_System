@@ -20,6 +20,9 @@ public class CustomerController {
         this.customerServices = customerServices;
     }
 
+    /**
+     * Метод добавления покупателей. Передаёт данные с консоли в метод добавления в CustomerService
+     */
     public void addCustomer(){
         System.out.println("Введи имя покупателя: ");
         name = sc.next();
@@ -30,20 +33,22 @@ public class CustomerController {
             System.out.println("Ошибка: Введенная категория некорректна. " +
                     "Пожалуйста, выберите одну из: NEW, REGULAR, VIP.");
         }
-
         String view = customerServices.addCustomer(name, category).toString();
         System.out.println(view);
     }
 
+    /**
+     * Метод, выводит всех покупателей в консоль. Получает List<Customer> из CustomerService
+     */
     public void getAllCustomers(){
-        // Выводим клиентов на экран
         customerServices.getAll().forEach((el)-> System.out.println("Покупатель: {" + el + "}"));
     }
 
-
-
+    /**
+     * Метод получения объекта покупателя по его ID.
+     * @return объект Customer
+     */
     public Customer getCustomer(){
-        //Выводим клиента по ID
         System.out.println("Введите ID покупателя: ");
         String id = sc.nextLine();
         System.out.println(customerServices.getCustomerId(id));

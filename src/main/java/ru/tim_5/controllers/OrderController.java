@@ -37,12 +37,12 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    /**
+     * Метод добавления заказов. Передаёт данные с консоли в метод добавления в OrderService
+     */
     public void addOrder() {
         System.out.println("Выбрать покупателя по ID");
-
         Customer customer1 = customerController.getCustomer();
-
-
         boolean stop = true;
         List<String> listProductID = new ArrayList<>();
         while (stop) {
@@ -60,7 +60,6 @@ public class OrderController {
                     System.out.println("Такой команды нет!");
             }
         }
-
         System.out.println("Введи категорию заказа( NEW, PROCESSING, COMPLETED, CANCELLED): ");
         try {
             category = OrderCategory.valueOf(sc.next());
@@ -69,7 +68,6 @@ public class OrderController {
                     "Пожалуйста, выберите одну из: NEW, PROCESSING, COMPLETED, CANCELLED.\n");
 
         }
-
         String view = orderService.addOrder(customer1.getID(), listProductID, category).toString();
         System.out.println(view);
     }
@@ -85,7 +83,11 @@ public class OrderController {
         }
     }
 
-    public void getProductById() throws RuntimeException {
+    /**
+     * Метод получения объекта заказ по его ID.
+     * @throws: RuntimeException
+     */
+    public void getOrderById() throws RuntimeException {
         System.out.println("Введите ID заказа: ");
         System.out.println("Ваш заказ найден. " + "Заказ: " + orderService.getOrderId(sc.nextLine()));
     }

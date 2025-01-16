@@ -18,22 +18,35 @@ public class CustomerService {
         this.customerRepositories = customerRepositories;
     }
 
+    /**
+     * Метод создаёт объект Customer и передаёт его в метод добавления в CustomerRepositories
+     * @param: String name
+     * @param: CustomerCategory category
+     * @return Customer
+     */
     public Customer addCustomer(String name, CustomerCategory category) {
         Customer customer = new Customer(name, category);
         return customerRepositories.saveCustomers(customer);
     }
 
+    /**
+     * Метод получения списка покупателей из CustomerRepositories
+     * @return List<Customer>
+     */
     public List<Customer> getAll(){
         // Получаем список клиентов
         logger.info("get all customers");
         return customerRepositories.findAllCustomer();
     }
 
+    /**
+     * Метод получения покупателя по ID
+     * @param: String id
+     * @return Customer
+     * @throws: CustomerNotFoundException
+     */
     public Customer getCustomerId(String id) throws CustomerNotFoundException {
         logger.info("get customer with id {}", id);
         return customerRepositories.findByIdCustomer(id);
     }
-
-
-
 }
