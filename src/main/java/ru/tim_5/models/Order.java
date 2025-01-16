@@ -14,11 +14,11 @@ public class Order {
 
 
     public Order() {
-        this.ID = IdGenerator.generateID();
+        this.ID = "З:" + IdGenerator.generateID();
     }
 
     public Order(String customerID, List<String> productID, OrderCategory category) {
-        this.ID = IdGenerator.generateID();
+        this.ID = "З:" + IdGenerator.generateID();
         this.customerID = customerID;
         this.productID = productID;
         this.category = category;
@@ -29,7 +29,7 @@ public class Order {
      * @param other: Order other
      */
     public Order(Order other) {
-        this.ID = IdGenerator.generateID();
+        this.ID = "З:" + IdGenerator.generateID();
         this.customerID = other.customerID;
         this.productID = other.productID;
         this.category = other.category;
@@ -40,7 +40,7 @@ public class Order {
      * @param other: BuilderOrder other
      */
     public Order(BuilderOrder other) {
-        this.ID = IdGenerator.generateID();
+        this.ID = "З:" + IdGenerator.generateID();
         this.customerID = other.customerID;
         this.productID = other.productID;
         this.category = other.category;

@@ -34,7 +34,7 @@ public class CustomerService {
      * @return List<Customer>
      */
     public List<Customer> getAll(){
-        logger.info("get all customers");
+        logger.info("Получение списка покупателей");
         return customerRepositories.findAllCustomer();
     }
 
@@ -45,7 +45,7 @@ public class CustomerService {
      * @throws: CustomerNotFoundException
      */
     public Customer getCustomerId(String id) throws CustomerNotFoundException {
-        logger.info("get customer with id {}", id);
+        logger.info("Поиск покупателя по id");
         return customerRepositories.findByIdCustomer(id);
     }
 }

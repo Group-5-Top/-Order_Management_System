@@ -11,11 +11,11 @@ public class Customer {
     private CustomerCategory category;
 
     public Customer() {
-        this.ID = IdGenerator.generateID();
+        this.ID = "П:" +IdGenerator.generateID();
     }
 
     public Customer(String name, CustomerCategory category) {
-        this.ID = IdGenerator.generateID();
+        this.ID = "П:" + IdGenerator.generateID();
         this.name = name;
         this.category = category;
     }
@@ -26,7 +26,7 @@ public class Customer {
      * @param other: Customer other
      */
     public Customer(Customer other) {
-        ID = other.ID;
+        ID = "П:" +  other.ID;
         this.name = other.name;
         this.category = other.category;
     }
@@ -36,7 +36,7 @@ public class Customer {
      * @param other: BuilderCustomer other
      */
     public Customer(BuilderCustomer other) {
-        ID = IdGenerator.generateID();
+        ID = "П:" + IdGenerator.generateID();
         this.name = other.name;
         this.category = other.category;
     }

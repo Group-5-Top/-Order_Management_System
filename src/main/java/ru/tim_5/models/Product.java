@@ -13,11 +13,11 @@ public class Product {
 
 
     public Product() {
-        this.ID = IdGenerator.generateID();
+        this.ID = "Т:" + IdGenerator.generateID();
     }
 
     public Product(String name, double price, ProductCategory category) {
-        this.ID = IdGenerator.generateID();
+        this.ID = "Т:" +  IdGenerator.generateID();
         this.name = name;
         this.price = price;
         this.category = category;
@@ -28,7 +28,7 @@ public class Product {
      * @param other: Product other
      */
     public Product(Product other) {
-        ID = other.ID;
+        ID = "Т:" + other.ID;
         this.name = other.name;
         this.price = other.price;
         this.category = other.category;
@@ -39,7 +39,7 @@ public class Product {
      * @param other: BuilderProduct other
      */
     public Product(BuilderProduct other) {
-        ID = IdGenerator.generateID();
+        ID = "Т:" + IdGenerator.generateID();
         this.name = other.name;
         this.price = other.price;
         this.category = other.category;
